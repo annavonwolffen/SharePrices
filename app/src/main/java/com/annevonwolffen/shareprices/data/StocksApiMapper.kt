@@ -13,5 +13,9 @@ interface StocksApiMapper {
 
     fun getCompanyProfile(ticker: String): Maybe<CompanyProfileResponse>
 
+    fun getQuoteForTicker2(ticker: String): QuoteResponse
+
+    fun getCompanyProfile2(ticker: String): CompanyProfileResponse
+
     fun searchSymbol(query: String): Maybe<SymbolSearchResponse>
 }

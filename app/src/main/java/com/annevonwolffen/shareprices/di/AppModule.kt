@@ -91,7 +91,8 @@ class AppModule {
         return StocksInteractorImpl(
             repository,
             DomainToPresentationModelConverter(resourceWrapper),
-            stocksSharedPrefHelper
+            stocksSharedPrefHelper,
+            RawDataHelper(resourceWrapper)
         )
     }
 

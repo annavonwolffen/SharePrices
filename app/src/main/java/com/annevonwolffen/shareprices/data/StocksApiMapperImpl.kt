@@ -18,6 +18,14 @@ class StocksApiMapperImpl(private val stocksService: StocksDataService) : Stocks
         return stocksService.getCompanyProfile(ticker)
     }
 
+    override fun getQuoteForTicker2(ticker: String): QuoteResponse {
+        return stocksService.getQuoteForTicker2(ticker)
+    }
+
+    override fun getCompanyProfile2(ticker: String): CompanyProfileResponse {
+        return stocksService.getCompanyProfile2(ticker)
+    }
+
     override fun searchSymbol(query: String): Maybe<SymbolSearchResponse> {
         return stocksService.searchSymbol(query)
     }

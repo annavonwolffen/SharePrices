@@ -22,6 +22,16 @@ interface StocksDataService {
         @Query("symbol") symbol: String
     ): Maybe<CompanyProfileResponse>
 
+    @GET("quote?token=$API_KEY")
+    fun getQuoteForTicker2(
+        @Query("symbol") symbol: String
+    ): QuoteResponse
+
+    @GET("stock/profile2?token=$API_KEY")
+    fun getCompanyProfile2(
+        @Query("symbol") symbol: String
+    ): CompanyProfileResponse
+
     @GET("search?token=$API_KEY")
     fun searchSymbol(
         @Query("q") query: String

@@ -16,6 +16,9 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.supervisorScope
 import java.util.Collections
 import java.util.concurrent.TimeUnit
 
@@ -66,6 +69,18 @@ class StocksRepositoryImpl(
                     .doOnError { t -> Log.e(TAG, t?.message.orEmpty()) }
                     .onErrorReturnItem(Collections.emptyList())
             }
+    }
+
+    override suspend fun getStocks(tickers: List<String>): List<StockModel> = supervisorScope {
+        tickers.map { ticker ->
+            async { getStockModel2(ticker) }
+        }.mapNotNull { kotlin.runCatching { it.await() }.getOrNull() }
+    }
+
+    private suspend fun getStockModel2(ticker: String): StockModel = supervisorScope {
+        val companyProfile = async { apiMapper.getCompanyProfile2(ticker) }
+        val quoteForTicker = async { apiMapper.getQuoteForTicker2(ticker) }
+        converter.convert(companyProfile.await(), quoteForTicker.await())
     }
 
     private fun getStocksData(tickers: List<String>): Single<List<StockModel>> {

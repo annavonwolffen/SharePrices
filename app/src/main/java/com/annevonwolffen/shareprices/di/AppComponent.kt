@@ -4,6 +4,7 @@ import android.content.Context
 import com.annevonwolffen.shareprices.di.viewmodel.ViewModelModule
 import com.annevonwolffen.shareprices.presentation.FavoritePageFragment
 import com.annevonwolffen.shareprices.presentation.SearchActivity
+import com.annevonwolffen.shareprices.presentation.SimpleStocksActivity
 import com.annevonwolffen.shareprices.presentation.StockDetailsActivity
 import com.annevonwolffen.shareprices.presentation.StocksPageFragment
 import dagger.BindsInstance
@@ -22,4 +23,5 @@ interface AppComponent {
     fun inject(favoritePageFragment: FavoritePageFragment)
     fun inject(stockDetailsActivity: StockDetailsActivity)
     fun inject(searchActivity: SearchActivity)
+    fun inject(stocksActivity: SimpleStocksActivity)
 }

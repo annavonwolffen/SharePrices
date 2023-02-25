@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.annevonwolffen.shareprices.presentation.viewmodel.FavoriteStocksViewModel
 import com.annevonwolffen.shareprices.presentation.viewmodel.SearchViewModel
+import com.annevonwolffen.shareprices.presentation.viewmodel.SimpleStocksViewModel
 import com.annevonwolffen.shareprices.presentation.viewmodel.StockDetailsViewModel
 import com.annevonwolffen.shareprices.presentation.viewmodel.StocksViewModel
 import dagger.Binds
@@ -35,4 +36,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
     abstract fun provideSearchViewModel(viewModel: SearchViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SimpleStocksViewModel::class)
+    abstract fun provideSimpleStocksViewModel(viewModel: SimpleStocksViewModel): ViewModel
 }

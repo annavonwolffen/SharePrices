@@ -16,4 +16,6 @@ interface StocksRepository {
     ): Single<List<StockModel>>
 
     fun getStocksSearch(query: String): Single<List<StockModel>>
+
+    suspend fun getStocks(tickers: List<String>): List<StockModel>
 }
